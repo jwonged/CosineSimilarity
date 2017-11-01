@@ -1,1 +1,1 @@
-# CosineSimilarity
+# WordSimilarity
