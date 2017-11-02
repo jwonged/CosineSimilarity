@@ -11,40 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 public class WordSimilarity {
-	private static List<String> cleanTokens(final List<String> tokWords) {
-		HashSet<String> stopWords = new HashSet<>();
-		try (BufferedReader br = new BufferedReader(new FileReader("stopWords.txt"))) {
-			String line;
-			while ((line = br.readLine()) != null) {
-				stopWords.add(line);
-			}
-			java.util.Collections.addAll(stopWords,
-					",", ".", "``", "$", "'s", "n't",
-					"(", ")", ":", "''", "[", "]", "%",
-					";", "!", "#", "*", "'ll", "...", "'d");
-		} catch (java.io.IOException e) {
-			e.printStackTrace();
-		}
-		
-		List<String> cleaned = new ArrayList<>();
-		for (String tok : tokWords) {
-			if (!stopWords.contains(tok)) cleaned.add(tok);
-		}
-		return cleaned;
-	}
-	private static List<String> getTokWords(final String fileName) {
-		ArrayList<String> tokenizedWords = new ArrayList<>();
-		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-			String line;
-			while ((line = br.readLine()) != null) {
-				tokenizedWords.add(line);
-			}
-		} catch (java.io.IOException e) {
-			e.printStackTrace();
-		}
-		return tokenizedWords;
-	}
-	
 	private static HashMap<String, Integer> countWordFrequencies(final List<String> tokWords) {
 		HashMap<String, Integer> wordCounts = new HashMap<>();
 		for (String tok : tokWords) {
@@ -144,8 +110,10 @@ public class WordSimilarity {
 		String fileName = "tokenizedText2.txt";
 		int windowSize = 5;
 		
-		List<String> corpus = getTokWords(fileName);
-		List<String> cleanedCorpus = cleanTokens(corpus);
+		CorpusRetriever retriever = new CorpusRetriever();
+		
+		List<String> corpus = retriever.getTokWords(fileName);
+		List<String> cleanedCorpus = retriever.cleanTokens(corpus);
 		HashMap<String, Integer> wordFrequencies = countWordFrequencies(cleanedCorpus);
 		List<Word> dimensions = getNMostFreq(wordFrequencies);
 		
