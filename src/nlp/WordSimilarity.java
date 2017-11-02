@@ -181,8 +181,5 @@ public class WordSimilarity {
 		System.out.println("afghanistan / iraq : " + calculateSimilarity(afghanistanVec, iraqVec));
 		System.out.println("afghanistan / war : " + calculateSimilarity(afghanistanVec, warVec));
 		System.out.println("iraq / war : " + calculateSimilarity(iraqVec, warVec));
-		
-		//for (Word w : dimensions) System.out.println(w.getVal() + " : " + w.getCount());
-		
 	}
 }
