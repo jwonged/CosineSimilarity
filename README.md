@@ -10,7 +10,7 @@ Corpus from http://www.cl.cam.ac.uk/~ltf24/sv2corpus.html
 
 ## Results
 
-`President / President : 0.9999999999999998  
+President / President : 0.9999999999999998  
 President / Obama : 0.7017519358823336  
 President / Bush : 0.27708548465883925  
 President / Afghanistan : 0.4653789209955172  
@@ -25,4 +25,4 @@ Bush / iraq : 0.2091386551365156
 Bush / war : 0.2497876857366484  
 afghanistan / iraq : 0.3787048546649207  
 afghanistan / war : 0.5564148840746571  
-iraq / war : 0.4029962965556805  '
+iraq / war : 0.4029962965556805 
