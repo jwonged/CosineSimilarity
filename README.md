@@ -1,7 +1,12 @@
-# WordSimilarity
-Corpus from http://www.cl.cam.ac.uk/~ltf24/sv2corpus.html  
+# NLPWordSimilarity
 
 Calculating word similarities through distributional semantics (cosine similarity)  
+
+Corpus from http://www.cl.cam.ac.uk/~ltf24/sv2corpus.html  
+
+* Window size = 5 (n=2 for lookahead / prior)
+* 20 Most frequent words as vector dimensions
+* Closed class / Stop words & Punctuation removed
 
 President / President : 0.9999999999999998  
 President / Obama : 0.7017519358823336  
