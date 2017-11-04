@@ -8,6 +8,7 @@ Corpus from http://www.cl.cam.ac.uk/~ltf24/sv2corpus.html
 * 20 Most frequent words as vector dimensions
 * Closed class / Stop words & Punctuation removed
 
+## Results
 President / President : 0.9999999999999998  
 President / Obama : 0.7017519358823336  
 President / Bush : 0.27708548465883925  
