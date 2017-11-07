@@ -8,25 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public class WordSimilarity {
-	private static HashMap<String, Integer> countWordFrequencies(final List<String> tokWords) {
-		HashMap<String, Integer> wordCounts = new HashMap<>();
-		for (String tok : tokWords) {
-			if (wordCounts.containsKey(tok)) {
-				wordCounts.put(tok, wordCounts.get(tok) + 1);
-			} else {
-				wordCounts.put(tok, 1);
-			}
-		}
-		return wordCounts;
-	}
-	private static List<Word> getNMostFreq(HashMap<String, Integer> wordFrequencies) {
-		ArrayList<Word> wordList = new ArrayList<>();
-		for (Map.Entry<String, Integer> word : wordFrequencies.entrySet()) {
-			wordList.add(new Word(word.getKey(), word.getValue()));
-		}
-		Collections.sort(wordList);
-		return wordList.subList(0, 19);
-	}
 	private static void incrMap(final String tok, HashMap<String, Integer> resultVec) {
 		if (resultVec.containsKey(tok)) {
 			resultVec.put(tok, resultVec.get(tok) + 1);
@@ -45,9 +26,8 @@ public class WordSimilarity {
 		Iterator<String> corpusIt2 = corpus.iterator();
 		for (int i=0; i<lookAround; i++) corpusIt2.next();
 		
-		String tok;
 		while (corpusIt2.hasNext()) {
-			if ((tok = corpusIt2.next()).equals(word.toLowerCase())) {
+			if ((corpusIt2.next()).equals(word.toLowerCase())) {
 				for (int i=0; i<lookAround; i++) {
 					incrMap(corpusIt1.next(), resultMap);
 					incrMap(corpusIt2.next(), resultMap);
@@ -108,11 +88,11 @@ public class WordSimilarity {
 		int windowSize = 5;
 		
 		CorpusRetriever retriever = new CorpusRetriever();
-		
 		List<String> corpus = retriever.getTokWords(fileName);
 		List<String> cleanedCorpus = retriever.cleanTokens(corpus);
-		HashMap<String, Integer> wordFrequencies = countWordFrequencies(cleanedCorpus);
-		List<Word> dimensions = getNMostFreq(wordFrequencies);
+		
+		DimensionExtractor extractor = new DimensionExtractor();
+		List<Word> dimensions = extractor.getNMostFreq(cleanedCorpus);
 		
 		printVec("President", dimensions, getVector("President", corpus, dimensions, windowSize));
 		printVec("Obama", dimensions, getVector("Obama", corpus, dimensions, windowSize));
