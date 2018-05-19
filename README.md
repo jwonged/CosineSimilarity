@@ -1,6 +1,6 @@
 # NLPWordSimilarity
 
-Calculating word similarities through distributional semantics (cosine similarity)  
+Calculating word similarities through distributional semantics 
 
 Corpus from http://www.cl.cam.ac.uk/~ltf24/sv2corpus.html  
 
